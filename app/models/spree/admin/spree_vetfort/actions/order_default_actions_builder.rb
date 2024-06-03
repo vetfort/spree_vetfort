@@ -22,6 +22,7 @@ module Spree
               # with_data_attributes({ confirm: Spree.t(:order_sure_want_to, event: :approve) }).
               with_state_change_check('approve').
               with_fire_ability_check.
+              with_classes('payment-action-save').
               build
 
             root.add(action)
