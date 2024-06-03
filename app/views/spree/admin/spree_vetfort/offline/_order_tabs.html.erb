@@ -1,0 +1,17 @@
+<% content_for :page_title do %>
+  <%= page_header_back_button spree.admin_orders_path %>
+  <%= @order.number %>
+<% end %>
+<% content_for :page_tabs do %>
+  <% vetfort_offline_order_tabs.items.each do |tab| %>
+    <% next unless tab.available?(current_ability, @order) %>
+    <%= content_tag :li, class: 'nav-item', data: { hook: tab.data_hook } do %>
+      <%= link_to_with_icon(
+        tab.icon_key,
+        Spree.t(tab.label_translation_key),
+        tab.url(@order),
+        class: tab.active?(current) ? 'active nav-link' : 'nav-link'
+      ) %>
+    <% end %>
+  <% end %>
+<% end %>

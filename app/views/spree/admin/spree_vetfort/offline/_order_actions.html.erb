@@ -1,0 +1,13 @@
+<% content_for :page_actions do %>
+  <% vetfort_offline_order_actions.items.each do |action| %>
+    <%# <% next unless action.available?(current_ability, order) %>
+    <%= button_link_to(
+      Spree.t(action.label_translation_key),
+      action.url(order),
+      class: action.classes,
+      icon: action.icon_key,
+      method: action.method,
+      data: action.data_attributes
+    ) %>
+  <% end %>
+<% end %>

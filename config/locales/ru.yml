@@ -1,0 +1,9 @@
+ru:
+  spree:
+    admin:
+      spree_vetfort:
+        order:
+          sold: 'Да бля! Продано!'
+          events:
+            approve: "Продать"
+    offline_vetfort: "Оффлайн Продажа"
