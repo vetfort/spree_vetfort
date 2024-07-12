@@ -37,21 +37,9 @@
       </div>
     <% end %>
 
-    <div class="text-center text-md-left add-to-cart-form-general-availability">
-      <%= Spree.t(:availability) %>:
-      <% if !is_product_available_in_currency %>
-        <%= render 'cart_form_availability_templates', type: 'not-available-in-currency' %>
-      <% elsif default_variant.in_stock? %>
-        <%= render 'cart_form_availability_templates', type: 'in-stock' %>
-      <% elsif default_variant.backorderable? %>
-        <%= render 'cart_form_availability_templates', type: 'backorderable' %>
-      <% else %>
-        <%= render 'cart_form_availability_templates', type: 'out-of-stock' %>
-      <% end %>
-    </div>
+    <% go_to_offline_shop = true %>
 
-    <% if @product.variants_and_option_values(current_currency).any? %>
-      <hr>
+    <% if go_to_offline_shop %>
       <ul id="product-variants" class="product-variants">
         <% used_variants_options(@variants, @product).each_with_index do |option_type, index| %>
           <li>
@@ -63,20 +51,45 @@
           </li>
         <% end %>
       </ul>
-    <% end %>
-
-    <% if is_product_available_in_currency && @product.can_supply? %>
-      <%= hidden_field_tag "variant_id", default_variant.id %>
-
-      <hr>
-
-      <%#= render("add_to_cart") %>
-
       <div class="container mt-5">
         <div class="alert alert-warning text-center p-2" role="alert">
             Скоро вы сможете покупать онлайн! Пока рады видеть вас в нашем магазине на <br /> ул. Киев 12, г. Кишинев
         </div>
       </div>
-    <% end %>
+    <%else%>
+      <div class="text-center text-md-left add-to-cart-form-general-availability">
+        <%= Spree.t(:availability) %>:
+        <% if !is_product_available_in_currency %>
+          <%= render 'cart_form_availability_templates', type: 'not-available-in-currency' %>
+        <% elsif default_variant.in_stock? %>
+          <%= render 'cart_form_availability_templates', type: 'in-stock' %>
+        <% elsif default_variant.backorderable? %>
+          <%= render 'cart_form_availability_templates', type: 'backorderable' %>
+        <% else %>
+          <%= render 'cart_form_availability_templates', type: 'out-of-stock' %>
+        <% end %>
+      </div>
+
+      <% if @product.variants_and_option_values(current_currency).any? %>
+        <hr>
+        <ul id="product-variants" class="product-variants">
+          <% used_variants_options(@variants, @product).each_with_index do |option_type, index| %>
+            <li>
+              <% if color_option_type_name.present? && color_option_type_name == option_type[:name] %>
+                <%= render "color_option_type", option_type: option_type, index: index %>
+              <% else %>
+                <%= render "option_type", option_type: option_type, index: index %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <% if is_product_available_in_currency && @product.can_supply? %>
+        <%= hidden_field_tag "variant_id", default_variant.id %>
+        <hr>
+        <%= render("add_to_cart") %>
+      <% end %>
+    <%end%>
   </div>
 <% end %>
