@@ -11,4 +11,14 @@ Spree::Core::Engine.add_routes do
       end
     end
   end
+
+  namespace :api do
+    namespace :payments do
+      resources :paynet, only: [] do
+        collection do
+          post :callback
+        end
+      end
+    end
+  end
 end
