@@ -37,9 +37,9 @@
       </div>
     <% end %>
 
-    <% go_to_offline_shop = true %>
+    <% online_shop_ready = ActiveModel::Type::Boolean.new.cast(ENV['GO_TO_OFFLINE']) %>
 
-    <% if go_to_offline_shop %>
+    <% unless online_shop_ready %>
       <ul id="product-variants" class="product-variants">
         <% used_variants_options(@variants, @product).each_with_index do |option_type, index| %>
           <li>
