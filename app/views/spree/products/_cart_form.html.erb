@@ -37,7 +37,7 @@
       </div>
     <% end %>
 
-    <% unless current_user.admin? %>
+    <% unless spree_current_user.admin? %>
       <ul id="product-variants" class="product-variants">
         <% used_variants_options(@variants, @product).each_with_index do |option_type, index| %>
           <li>
