@@ -1,5 +1,7 @@
 ru:
   spree:
+    checkout_page:
+      pay: "Оплатить"
     admin:
       spree_vetfort:
         order:

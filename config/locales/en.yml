@@ -3,6 +3,8 @@
 
 en:
   spree:
+    checkout_page:
+      pay: "Pay"
     admin:
       spree_vetfort:
         order:
