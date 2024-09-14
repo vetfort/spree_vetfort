@@ -2,6 +2,13 @@ ru:
   spree:
     checkout_page:
       pay: "Оплатить"
+      payment:
+        ok:
+          thank_you: "Спасибо за покупку!"
+          order: "Ваш заказ успешно обработан."
+        cancel:
+          sorry: "Очень жаль!"
+          failed: "Ваш заказ не был обработан."
     admin:
       spree_vetfort:
         order:

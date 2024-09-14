@@ -5,6 +5,10 @@ en:
   spree:
     checkout_page:
       pay: "Pay"
+      payment:
+        ok:
+          thank_you: "Thank you!"
+          order: "Your order has been processed successfully."
     admin:
       spree_vetfort:
         order:
