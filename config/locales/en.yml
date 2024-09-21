@@ -1,18 +1,69 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
   spree:
+    payment_type: "Payment Type"
+    subtotal: "Subtotal"
+    availability: "Availability"
+    account_info: "Account Information"
+    pdp:
+      checkout: Checkout
+      description: Description
+      details: Details
+      products_included_in_promotion: Products included in the promotion
+      quantity: Quantity
+      view_cart: View cart
+      you_may_also_like: You may also like
+    plp:
+      best_selling: Best Selling
+      clear_all: Clear All
+      collection: Collection
+      color: Color
+      done: Done
+      default: Default
+      filter_by: Filter By
+      newest_first: Newest First
+      no_results: No results
+      no_results_found: No results found
+      not_found_filters1: We couldn’t find a match for these filters.
+      not_found_filters2: Please try another choose.
+      not_found_text1: We couldn’t find products for '%{keywords}'.
+      not_found_text2: Please try another search.
+      price: Price
+      price_high_to_low: Price (High - Low)
+      price_low_to_high: Price (Low - High)
+      name_a_z: Name (A-Z)
+      name_z_a: Name (Z-A)
+      result: Result
+      results_for: Results For
+      size: Size
+      sort_by: Sort By
+      top_sellers: Top Sellers
+      type: Type
+    cart_page:
+      product: "Product"
+      quantity: "Quantity"
+      add_promo_code: "ADD PROMO CODE"
+      checkout: "Checkout"
+    payment_methods:
+      Paynet: "Online Payment Mastercard Visa"
     checkout_page:
+      back_to_cart: "Back to Cart"
+      header: "Checkout"
+      and: "and"
+      accept_terms: "I agree and confirm that I have read the"
+      conditions: "Conditions"
+      terms: "Terms of Use"
       pay: "Pay"
       payment:
         ok:
-          thank_you: "Thank you!"
-          order: "Your order has been processed successfully."
+          thank_you: "Thank you for your purchase!"
+          order: "Your order was successfully processed."
+        cancel:
+          sorry: "Sorry!"
+          failed: "Your order was not processed."
     admin:
       spree_vetfort:
         order:
-          sold: 'Sold!'
+          sold: 'Hell yeah! Sold!'
           events:
-            approve: "Vetfort Approve"
-    offline_vetfort: "Offline Vetfort"
+            approve: "Sell"
+    offline_vetfort: "Offline Sale"
