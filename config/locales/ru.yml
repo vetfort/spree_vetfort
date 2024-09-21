@@ -46,6 +46,7 @@ ru:
     payment_methods:
       Paynet: "Оплата Online Mastercard Visa"
     checkout_page:
+      delivery_method: "Способ доставки"
       back_to_cart: "Вернуться в корзину"
       header: "Оформление заказа"
       and: "и"
