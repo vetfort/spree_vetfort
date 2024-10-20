@@ -1,5 +1,5 @@
 module SpreeVetfort
-  VERSION = '0.0.17'.freeze
+  VERSION = '0.1.0.rc1'.freeze
 
   module_function
 

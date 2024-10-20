@@ -147,7 +147,7 @@ module Spree::Admin::SpreeVetfort
     def assign_order_to_user
       user = Spree::User.admin.first
       address_attrs = %i[firstname lastname address1 address2 city country_id zipcode  phone state_name company]
-      address = user.billing_address.slice(*address_attrs)
+      address = user.billing_address&.slice(*address_attrs)
 
       attributes = {
         email: user.email,
