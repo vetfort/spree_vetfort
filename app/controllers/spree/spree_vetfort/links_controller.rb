@@ -1,5 +1,5 @@
 class Spree::SpreeVetfort::LinksController < ApplicationController
-  layout 'vetfort_application'
+  layout 'spree_vetfort/vetfort_application'
 
   def index
     @links_component = SpreeVetfort::LinksComponent.new

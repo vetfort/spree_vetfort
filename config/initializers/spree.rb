@@ -6,5 +6,5 @@ Rails.application.config.after_initialize do
       .build
   )
 
-  Spree::Frontend::Config[:layout] = 'vetfort_application'
+  # Spree::Frontend::Config[:layout] = 'vetfort_application'
 end
