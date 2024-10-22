@@ -1,28 +1,27 @@
-<div class="min-h-screen flex items-center justify-center bg-radial-gradient-top">
-  <div class="rounded-lg p-6 w-full max-w-md">
-    <div class="flex justify-center">
-      <%= image_tag 'vetfort/logo.png', alt: 'Logo', class: 'h-16 w-auto' %>
+<div class="page-wrapper">
+  <main class="main-content">
+    <div class="content-box">
+      <div class="logo-container">
+        <%= image_tag 'vetfort/logo.png', alt: 'Logo', class: 'logo' %>
+      </div>
+      <div class="shop-title">
+        VetFort Shop
+      </div>
+      <h1 class="social-title">Наши социальные сети</h1>
+      <div class="social-links">
+        <a class="social-link" href=<%= vetfort_link %> target="_blank">
+          <%= image_tag 'vetfort/logo.png', alt: 'tiktok', class: 'icon' %>
+          В Магазин
+        </a>
+        <a class="social-link" href=<%= instagram_link %> target="_blank">
+          <%= image_tag 'vetfort/instagram.svg', alt: 'instagram', class: 'icon' %>
+          Instagram
+        </a>
+        <a class="social-link" href=<%= tiktok_link %> target="_blank">
+          <%= image_tag 'vetfort/tiktok.svg', alt: 'tiktok', class: 'icon' %>
+          TikTok
+        </a>
+      </div>
     </div>
-    <div class="flex justify-center mb-6">
-      VetFort Shop
-    </div>
-    <h1 class="text-2xl font-bold mb-6 text-center">Наши социальные сети</h1>
-    <div class="space-y-4">
-      <a class="
-         flex items-center bg-white hover:bg-gray-100 font-bold py-3 px-6 rounded-2xl text-center transition duration-300" href=<%= vetfort_link %> target="_blank">
-        <%= image_tag 'vetfort/logo.png', alt: 'tiktok', class: 'h-9 w-auto mr-5' %>
-        В Магазин
-      </a>
-      <a class="
-        flex items-center bg-white hover:bg-gray-100 font-bold py-3 px-6 rounded-2xl text-center transition duration-300" href=<%= instagram_link %> target="_blank">
-        <%= image_tag 'vetfort/instagram.svg', alt: 'instagram', class: 'h-9 w-auto mr-5' %>
-        Instagram
-      </a>
-      <a class="
-         flex items-center bg-white hover:bg-gray-100 font-bold py-3 px-6 rounded-2xl text-center transition duration-300" href=<%= tiktok_link %> target="_blank">
-        <%= image_tag 'vetfort/tiktok.svg', alt: 'tiktok', class: 'h-9 w-auto mr-5' %>
-        TikTok
-      </a>
-    </div>
-  </div>
+  </main>
 </div>
