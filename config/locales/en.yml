@@ -44,7 +44,7 @@ en:
       add_promo_code: "ADD PROMO CODE"
       checkout: "Checkout"
     payment_methods:
-      Paynet: "Online Payment Mastercard Visa"
+      Paynet: "Online Payment Mastercard/Visa"
     checkout_page:
       back_to_cart: "Back to Cart"
       header: "Checkout"

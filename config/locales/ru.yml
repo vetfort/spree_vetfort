@@ -43,6 +43,8 @@ ru:
       quantity: "Количество"
       add_promo_code: "ДOБАВИТЬ ПРОМОКОД"
       checkout: "Оформить заказ"
+    payment_methods:
+      Paynet: "Онлайн оплата Mastercard/Visa"
     checkout_page:
       delivery_method: "Способ доставки"
       back_to_cart: "Вернуться в корзину"
