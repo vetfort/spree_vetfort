@@ -57,6 +57,7 @@ en:
         ok:
           thank_you: "Thank you for your purchase!"
           order: "Your order was successfully processed."
+          we_will_contact_you: "We will contact you shortly."
         cancel:
           sorry: "Sorry!"
           failed: "Your order was not processed."
