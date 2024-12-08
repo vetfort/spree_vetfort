@@ -1,0 +1,42 @@
+<div data-hook="translations_form">
+  <%= form_tag admin_spree_vetfort_properties_translation_path(@product), { class: 'form-horizontal', method: :patch } do %>
+    <div class="table-responsive border rounded bg-white">
+      <div id="translations-table-wrapper">
+        <table class="table">
+          <% locales = current_store.supported_locales_list.sort %>
+          <thead class="text-muted">
+            <tr data-hook="translations_header">
+              <th scope="col" class="text-center" style="min-width: 12.5rem; position: absolute; background-color: white;"><%= Spree.t(:field) %></th>
+              <th style="min-width: 12.5rem; display: block; height: 100%"></th>
+              <% locales.each do |locale| %>
+                <th scope="col" class="text-center" style="min-width: 12.5rem"><%= locale %></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody id="translations_body" data-hook="translations_body">
+            <% Spree::ProductProperty.translatable_fields.each do |field| %>
+              <% product_properties.each do |product_property| %>
+                <tr data-hook="translates_field_row">
+                  <td class="text-left" style="min-width: 12.5rem; position: absolute; background-color: white; height: 3.5rem">
+                    <span><%= product_property.property.presentation %></span>
+                  </td>
+                  <td style="min-width: 12.5rem; display: block; height: 100%"></td>
+                  <% locales.each do |locale| %>
+                    <td style="height: 3.5rem">
+                      <%= text_field_tag "product_properties[#{product_property.id}][translations][#{locale}][#{field}]",
+                                       product_property.get_field_with_locale(locale, field),
+                                       class: 'form-control' %>
+                    </td>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-actions" data-hook="buttons">
+      <%= button Spree.t('actions.update'), 'update.svg' %>
+    </div>
+  <% end %>
+</div>

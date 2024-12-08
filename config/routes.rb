@@ -9,6 +9,8 @@ Spree::Core::Engine.add_routes do
           put :approve
         end
       end
+
+      resources :properties_translations, only: [:update]
     end
   end
 end
