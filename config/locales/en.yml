@@ -68,3 +68,4 @@ en:
           events:
             approve: "Sell"
     offline_vetfort: "Offline Sale"
+    import_vetfort: "Import"

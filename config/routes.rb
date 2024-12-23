@@ -11,6 +11,12 @@ Spree::Core::Engine.add_routes do
       end
 
       resources :properties_translations, only: [:update]
+
+      resources :imports, only: [:new, :create] do
+        collection do
+          get :template
+        end
+      end
     end
   end
 end

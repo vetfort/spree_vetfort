@@ -69,3 +69,4 @@ ru:
           events:
             approve: "Продать"
     offline_vetfort: "Оффлайн Продажа"
+    import_vetfort: "Импорт"

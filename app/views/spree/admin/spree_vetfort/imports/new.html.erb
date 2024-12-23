@@ -1,0 +1,6 @@
+<%= link_to 'Download CSV Template', template_admin_spree_vetfort_imports_path, class: 'btn btn-primary' %>
+<br>
+<%= form_tag admin_spree_vetfort_imports_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Import', class: 'btn btn-primary' %>
+<% end %>
