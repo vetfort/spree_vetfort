@@ -14,7 +14,8 @@ class ProductImporterService < ApplicationService
     end
 
     yield add_to_product(product, taxons:, options:, properties:)
-    yield add_description(product)
+
+    add_description(product)
   end
 
   private
@@ -112,11 +113,6 @@ class ProductImporterService < ApplicationService
       )
 
       product.save!
-    end
-  end
-
-  def add_meta_data(product)
-    with_rescue do
     end
   end
 

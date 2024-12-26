@@ -4,3 +4,7 @@
   <%= file_field_tag :file %>
   <%= submit_tag 'Import', class: 'btn btn-primary' %>
 <% end %>
+
+<%= turbo_stream_from "product_imports" %>
+
+<div id="import-messages"></div>
