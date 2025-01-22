@@ -1,0 +1,12 @@
+<ul>
+  <% properties.each do |key, value| %>
+    <li>
+      <strong><%= key.to_s.humanize %>:</strong>
+      <% if value.is_a?(Hash) %>
+        <%= render "properties", properties: value %>
+      <% else %>
+        <%= value.inspect %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

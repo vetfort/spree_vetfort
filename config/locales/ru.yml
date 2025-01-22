@@ -1,5 +1,6 @@
 ru:
   spree:
+    admin_actions: "Мониторинг действий"
     payment_type: "Способ оплаты"
     subtotal: "Итого"
     availability: "Доступно"

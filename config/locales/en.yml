@@ -1,5 +1,6 @@
 en:
   spree:
+    admin_actions: "Admin Actions"
     payment_type: "Payment Type"
     subtotal: "Subtotal"
     availability: "Availability"
@@ -61,7 +62,6 @@ en:
         cancel:
           sorry: "Sorry!"
           failed: "Your order was not processed."
-    admin:
       spree_vetfort:
         order:
           sold: 'Hell yeah! Sold!'
