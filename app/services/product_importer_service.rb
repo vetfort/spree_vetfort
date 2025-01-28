@@ -92,7 +92,6 @@ class ProductImporterService < ApplicationService
     end
   end
 
-
   def add_description(product, url:)
     with_rescue do
       ru_description = generate_description(product, url:)
@@ -101,9 +100,11 @@ class ProductImporterService < ApplicationService
       product.description = parsed_response["ru"]["description"]
       product.translations.find_or_initialize_by(locale: :ro).update!(description: parsed_response["ro"]["description"])
 
+      meta_desc = parsed_response.dig("ru", "meta_description") + "\n" + url
+
       product.update!(
         meta_title:       parsed_response.dig("ru", "meta_title"),
-        meta_description: parsed_response.dig("ru", "meta_description"),
+        meta_description: meta_desc,
         meta_keywords:    parsed_response.dig("ru", "meta_keywords")
       )
       product.translations.find_or_initialize_by(locale: :ro).update!(

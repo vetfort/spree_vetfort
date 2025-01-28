@@ -3,10 +3,10 @@ require 'dry/monads'
 class CsvParallelImportService
   include Dry::Monads[:task]
 
-  def call(csv_rows, workers_count)
+  def call(csv_rows, _workers_count)
     start_time = Time.current
 
-    tasks = csv_rows.each_slice(slice_size(csv_rows.count, workers_count)).map do |batch|
+    tasks = csv_rows.each_slice(slice_size(csv_rows.count, 2)).map do |batch|
       Task[:io] do
         ActiveRecord::Base.connection_pool.with_connection do
           batch.each { |row| process_row(row) }
@@ -15,6 +15,8 @@ class CsvParallelImportService
     end
 
     tasks.map(&:wait)
+
+    # csv_rows.each { |row| process_row(row) }
 
     broadcast_completion(csv_rows.count, start_time)
   end
