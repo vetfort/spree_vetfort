@@ -5,9 +5,9 @@ class ProductImporterService < ApplicationService
     taxons = yield extract_taxons(row['Taxons'])
     options = yield extract_options(row['Options'])
     properties = yield extract_properties(row['Properties'])
+    url = row['URL']
 
     product = nil
-
     ActiveRecord::Base.transaction do
       product = yield build_product(product_attributes:, store:)
       product.save!
@@ -15,7 +15,7 @@ class ProductImporterService < ApplicationService
 
     yield add_to_product(product, taxons:, options:, properties:)
 
-    add_description(product)
+    add_description(product, url:)
   end
 
   private
@@ -93,9 +93,9 @@ class ProductImporterService < ApplicationService
   end
 
 
-  def add_description(product)
+  def add_description(product, url:)
     with_rescue do
-      ru_description = generate_ru_description(product)
+      ru_description = generate_description(product, url:)
 
       parsed_response = JSON.parse(ru_description)
       product.description = parsed_response["ru"]["description"]
@@ -118,32 +118,23 @@ class ProductImporterService < ApplicationService
 
   private
 
-  def generate_ru_description(product)
+  def generate_description(product, url:)
     prompt = <<~PROMPT
       Напиши привлекательное описание для товара: #{product.name}
 
+      #{ url ? "посети карточку этого продукта по ссылке и возьми оттуда все что тебе нужно для выполнения задания: #{url}" : '' }
+
       Учти следующие моменты:
-      - Это изделие ручной работы от бренда Astor
-      - Упомяни материал:
-      - Упомяни размеры:
       - Это описание будет храниться в rich text, поэтому используй html теги для форматирования,
       однако это не markdown, поэтому не используй markdown теги.
+      - Добавь описание с учетом бестпрактик для привлечения клиента
 
       Обязательно включи в описание:
-      1. Вступительное предложение подчеркивающее ручную работу и качество
-      2. Абзац об особенностях конструкции и эргономике:
-        - Удобство использования
-        - Надежность креплений
-        - Качество швов
-        - Прочность материалов
-      3. Абзац о практическом применении:
+      1. Вступительное предложение подчеркивающее высокое качество
+      2. Абзац о практическом применении:
         - Для каких пород/размеров животных подходит
         - В каких ситуациях лучше всего использовать
-        - Особенности ухода
-      4. Заключительный абзац с преимуществами:
-        - Долговечность
-        - Натуральные материалы
-        - Комфорт питомца
+      3. Заключительный абзац с преимуществами:
 
       Используй эмоджи где уместно, но не перегружай ими текст.
 
@@ -163,7 +154,7 @@ class ProductImporterService < ApplicationService
 
       {
         "ru": {
-          "description": "Полное описание товара на русском (3-4 абзаца с эмоджи, акцент на ручную работу, качество, эргономику)",
+          "description": "Полное описание товара на русском (3-4 абзаца с эмоджи, акцент на качество)",
           "meta_title": "SEO-заголовок на русском (до 60 символов)",
           "meta_description": "SEO-описание на русском (до 155 символов)",
           "meta_keywords": "ключевые,слова,через,запятую"
@@ -185,5 +176,73 @@ class ProductImporterService < ApplicationService
     response = OpenaiService.new.complete(prompt)
     response.dig("choices", 0, "message", "content")
   end
+
+  # def generate_ru_description(product)
+  #   prompt = <<~PROMPT
+  #     Напиши привлекательное описание для товара: #{product.name}
+
+  #     Учти следующие моменты:
+  #     - Это изделие ручной работы от бренда Astor
+  #     - Упомяни материал:
+  #     - Упомяни размеры:
+  #     - Это описание будет храниться в rich text, поэтому используй html теги для форматирования,
+  #     однако это не markdown, поэтому не используй markdown теги.
+
+  #     Обязательно включи в описание:
+  #     1. Вступительное предложение подчеркивающее ручную работу и качество
+  #     2. Абзац об особенностях конструкции и эргономике:
+  #       - Удобство использования
+  #       - Надежность креплений
+  #       - Качество швов
+  #       - Прочность материалов
+  #     3. Абзац о практическом применении:
+  #       - Для каких пород/размеров животных подходит
+  #       - В каких ситуациях лучше всего использовать
+  #       - Особенности ухода
+  #     4. Заключительный абзац с преимуществами:
+  #       - Долговечность
+  #       - Натуральные материалы
+  #       - Комфорт питомца
+
+  #     Используй эмоджи где уместно, но не перегружай ими текст.
+
+  #     Стиль: дружелюбный, профессиональный, вызывающий доверие.
+  #     Длина: 3-4 абзаца, каждый 2-3 предложения.
+
+  #     Важно: не используй превосходные степени и избегай прямой рекламы.
+
+  #     также мне нужны мета данные для этого товара, которые будут использоваться для SEO
+
+  #     Эта информация возможно может быть полезной для SEO:
+  #     магазин называется VetFort, который расположен по адресу ул. Kiev 12 Chisinau, Moldova
+  #     телефон для связи +373 68822758
+  #     email для связи info@vetfort.md
+
+  #     Пожалуйста, верни ответ в следующем JSON формате:
+
+  #     {
+  #       "ru": {
+  #         "description": "Полное описание товара на русском (3-4 абзаца с эмоджи, акцент на ручную работу, качество, эргономику)",
+  #         "meta_title": "SEO-заголовок на русском (до 60 символов)",
+  #         "meta_description": "SEO-описание на русском (до 155 символов)",
+  #         "meta_keywords": "ключевые,слова,через,запятую"
+  #       },
+  #       "ro": {
+  #         "description": "Полное описание на румынском (перевод русского описания)",
+  #         "meta_title": "SEO-заголовок на румынском",
+  #         "meta_description": "SEO-описание на румынском",
+  #         "meta_keywords": "cuvinte,cheie,separate,prin,virgulă"
+  #       }
+  #     }
+
+  #     ВАЖНО: Верни ответ в виде чистого JSON, без маркеров форматирования и без обрамляющих символов markdown или json.
+  #     Не добавляй ```json в начале и ``` в конце.
+  #     Не добавляй никаких пояснений или комментариев.
+  #     Ответ должен начинаться с { и заканчиваться на }.
+  #   PROMPT
+
+  #   response = OpenaiService.new.complete(prompt)
+  #   response.dig("choices", 0, "message", "content")
+  # end
 
 end
