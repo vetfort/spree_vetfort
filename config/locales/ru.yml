@@ -1,5 +1,9 @@
 ru:
   spree:
+    home:
+      search:
+        placeholder: "Начните вводить название товара"
+        title: "Поиск в магазине"
     admin_actions: "Мониторинг действий"
     payment_type: "Способ оплаты"
     subtotal: "Итого"
