@@ -1,6 +1,6 @@
 ru:
   spree:
-    home:
+    home_page:
       search:
         placeholder: "Начните вводить название товара"
         title: "Поиск в магазине"

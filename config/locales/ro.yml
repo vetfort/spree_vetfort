@@ -1,6 +1,6 @@
 ro:
   spree:
-    home:
+    home_page:
       search:
         placeholder: "Începeți să tastați numele produsului"
         title: "Căutare în magazin"
