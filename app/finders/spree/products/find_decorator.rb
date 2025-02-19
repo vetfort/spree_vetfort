@@ -8,12 +8,11 @@ module Spree::Products::FindDecorator
     properties.to_unsafe_hash.each do |property_filter_param, product_properties_values|
       next if property_filter_param.blank? || product_properties_values.empty?
 
-      binding.pry
       # Handle both string and array inputs
       values = if product_properties_values.is_a?(String)
-                  product_properties_values.split(',')
-                else
-                  Array(product_properties_values)
+                 product_properties_values.split(',')
+               else
+                 Array(product_properties_values)
                end
 
       # Parameterize each individual value
