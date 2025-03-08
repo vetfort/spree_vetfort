@@ -4,6 +4,8 @@ ru:
       search:
         placeholder: "Начните вводить название товара"
         title: "Поиск в магазине"
+        no_results: "Ничего не найдено"
+        show_all_results: "Показать все результаты"
     admin_actions: "Мониторинг действий"
     payment_type: "Способ оплаты"
     subtotal: "Итого"

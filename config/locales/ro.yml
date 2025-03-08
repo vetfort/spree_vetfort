@@ -4,6 +4,8 @@ ro:
       search:
         placeholder: "Începeți să tastați numele produsului"
         title: "Căutare în magazin"
+        no_results: "Niciun rezultat"
+        show_all_results: "Afișează toate rezultatele"
     admin_actions: "Monitorizarea acțiunilor"
     payment_type: "Metoda de plată"
     subtotal: "Subtotal"
